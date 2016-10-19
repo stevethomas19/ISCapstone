@@ -18,7 +18,7 @@ class CreatePccInfos < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
-      t.string :inkind_comments
+      t.string :inkind_comment
 
       t.timestamps null: false
     end
