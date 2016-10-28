@@ -4,9 +4,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :pcc_infos do
-      member do
-        post :import_file
-      end
+      collection { post :import_file }
     end
+    # post '/import_file', to: "pcc_infos#import_file", as: :import_file
   end
 end

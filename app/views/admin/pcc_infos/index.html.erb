@@ -1,2 +1,6 @@
 You are signed in as an Admin.
+<%= form_tag import_file_admin_pcc_infos_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
 <%= link_to 'Sign out', destroy_admin_session_path, method: :delete %>
