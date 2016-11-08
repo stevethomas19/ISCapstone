@@ -1,8 +1,9 @@
 class Admin::PccInfosController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_pcc_info, only: [:edit, :update, :destroy]
 
   def index
-    @pcc_infos = PccInfo.paginate(page: params[:page], per_page: 10)
+    @pcc_infos = PccInfo.order("tran_date DESC").paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -18,6 +19,22 @@ class Admin::PccInfosController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @pcc_info.update(pcc_info_params)
+      redirect_to admin_pcc_infos_path, notice: 'Record was modified.'
+    else
+      render :edit, alert: 'Record could not be modified'
+    end
+  end
+
+  def destroy
+    @pcc_info.destroy
+    redirect_to admin_pcc_infos_path, notice: "Record has been removed."
+  end
+
   def show
     redirect_to admin_pcc_infos_path
   end
@@ -25,6 +42,11 @@ class Admin::PccInfosController < ApplicationController
   def import_file
     PccInfo.import(params[:file])
     redirect_to admin_pcc_infos_path, notice: "Data imported!"
+  end
+
+  private
+  def set_pcc_info
+    @pcc_info = PccInfo.find_by(id: params[:id])
   end
 
   def pcc_info_params
