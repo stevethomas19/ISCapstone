@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   root 'dashboards#index'
+  get '/dashboard', to: 'dashboards#tableau'
 
   namespace :admin do
     resources :pcc_infos do
