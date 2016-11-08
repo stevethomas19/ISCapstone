@@ -8,6 +8,8 @@ class PccInfo < ActiveRecord::Base
   end # end self.import(file)
 
   def self.clean_data(row)
+    #TODO Remove blank names, remove john doe, remove balanced transfer
+
     row['filed'] = row['filed'].present? ? true : false
     row['tran_id'] = row['tran_id'].to_i
 

@@ -8,8 +8,17 @@
 </head>
 <body>
   <div class="container">
-    <div class='text-center'><h1><%= flash[:notice] %></h1></div>
-    <div class='text-center'><h1><%= flash[:alert] %></h1></div>
+    <div class="row">
+      <%= link_to image_tag("logo.png", alt: "Utah Political Donation Databse"), root_path %>
+    </div>
+      <div class="col-sm-offset-8 col-sm-4">
+        <% if flash[:notice] %>
+          <div class='pull-right alert alert-success' style='margin-top: 10px;'><p><%= flash[:notice] %></p></div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class='pull-right alert alert-danger' style='margin-top: 10px;'><p><%= flash[:alert] %></p></div>
+        <% end %>
+      </div>
     <%= yield %>
   </div>
 </body>

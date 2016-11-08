@@ -1,3 +1,4 @@
+<h1 class="text-center">PCC Info</h1>
 <div class="row">
   <div class="col-sm-offset-9 col-sm-3">
     <button type="button" name="import-file" class="btn btn-primary pull-right" data-toggle="modal" data-target="#importModal" style="margin-left:10px;">
@@ -12,6 +13,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>Actions</th>
         <th>Filed</th>
         <th>PCC</th>
         <th>Report</th>
@@ -35,6 +37,10 @@
     <tbody>
       <% @pcc_infos.each do |pcc| %>
       <tr>
+        <td>
+          <%= link_to '', edit_admin_pcc_info_path(pcc.id), class: 'btn btn-info glyphicon glyphicon-pencil' %>
+          <%= link_to '', admin_pcc_info_path(pcc.id), method: :delete, class: 'btn btn-danger glyphicon glyphicon-trash' %>
+        </td>
         <td><%= pcc.filed ? 'X' : '' %></td>
         <td><%= pcc.pcc %></td>
         <td><%= pcc.report %></td>
