@@ -3,7 +3,8 @@ class Admin::PccInfosController < ApplicationController
   before_action :set_pcc_info, only: [:edit, :update, :destroy]
 
   def index
-    @pcc_infos = PccInfo.order("tran_date DESC").paginate(page: params[:page], per_page: 10)
+    @pcc_infos = params[:query] ? PccInfo.order("tran_date DESC").search(params[:query]) : PccInfo.order("tran_date DESC")
+    @pcc_infos = @pcc_infos.paginate(page: params[:page], per_page: 10)
   end
 
   def new

@@ -1,4 +1,9 @@
 class PccInfo < ActiveRecord::Base
+  def self.search(query)
+    query = "%#{query}%"
+    where('(name ILIKE ?) OR (pcc ILIKE ?)', query, query)
+  end
+
   def self.import(file)
     CSV.foreach(file.path, headers: true, header_converters: lambda { |h| h.try(:downcase) }) do |row|
       pcc_infos_hash = row.to_hash
