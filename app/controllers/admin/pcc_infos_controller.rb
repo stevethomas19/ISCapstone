@@ -14,6 +14,8 @@ class Admin::PccInfosController < ApplicationController
   def create
     @pcc_info = PccInfo.new(pcc_info_params)
     if @pcc_info.save
+      detector = GenderDetector.new(case_sensitive: false)
+      PccInfo.predict_gender(@pcc_info, detector)
       redirect_to admin_pcc_infos_path, notice: "New record was added."
     else
       render :new, alert: 'New record was not added.'

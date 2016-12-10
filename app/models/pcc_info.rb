@@ -47,16 +47,18 @@ class PccInfo < ActiveRecord::Base
   end
 
   def self.predict_gender(record, detector)
-    name = record.name.include?(', ') ? record.name.split(', ')[1] : record.name.split(' ')[0]
+    unless name.nil?
+      name = record.name.include?(', ') ? record.name.split(', ')[1] : record.name.split(' ')[0]
 
-    case detector.get_gender(name)
-    when :male
-      record.gender = 'male'
-    when :female
-      record.gender = 'female'
-    else
-      record.gender = 'unknown'
+      case detector.get_gender(name)
+      when :male
+        record.gender = 'male'
+      when :female
+        record.gender = 'female'
+      else
+        record.gender = 'unknown'
+      end
+      record.save
     end
-    record.save
   end
 end

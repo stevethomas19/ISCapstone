@@ -5,4 +5,7 @@ class DashboardsController < ApplicationController
   def tableau
     #code
   end
+  def predict
+    #code
+  end
 end

@@ -5,8 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="http://public.tableau.com/javascripts/api/tableau-2.js"></script>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
   <div class="container">
     <div class="row">
       <%= link_to image_tag("logo.png", alt: "Utah Political Donation Databse"), root_path %>
